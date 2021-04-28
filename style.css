@@ -1,0 +1,23 @@
+body{
+    background-color: rgb(204, 175, 102);
+    margin: 20px 100px;
+}
+.nav-item a{
+    color: rgb(11, 11, 92);
+    font-size: 20px;
+}
+.navbar-brand h3{
+    color: rgb(11, 11, 92);
+    font-size: 30px;
+    font-weight: 700;
+}
+.form-control{
+    width: 30%;
+}
+.btn-outline{
+    color: white;
+    background-color: rgb(11, 11, 92);
+}
+.btn-outline:hover{
+    color: white;
+}
