@@ -4,7 +4,7 @@ body{
 }
 .nav-item a{
     color: rgb(11, 11, 92);
-    font-size: 20px;
+    font-size: 15px;
 }
 .navbar-brand h3{
     color: rgb(11, 11, 92);
@@ -20,4 +20,44 @@ body{
 }
 .btn-outline:hover{
     color: white;
+}
+#meals{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    margin: 20px;
+}
+.meal{
+    margin: 20px;
+    padding: 20px;  
+}
+.card{
+    border-radius: 20px;
+    
+}
+.meal img{
+    padding: 10px;
+    border-radius: 20px;   
+}
+#details .card{
+    width: 50%;
+    
+    margin: 20px;
+    
+    
+}
+#details{
+    margin-top: 20px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    
+}
+#details img{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+#ing{
+    display: none;
+    
 }

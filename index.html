@@ -27,7 +27,7 @@
                     </div>
                     <div class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Recipes</a>
-                        
+
                     </div>
                     <div class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Blog</a>
@@ -35,12 +35,20 @@
                 </div>
             </div>
         </nav>
-        
-        <form class="d-flex justify-content-center">
-            <input class="form-control me-2 " type="search" placeholder="Search for Meal..." aria-label="Search">
-            <button class="btn btn-outline"; type="submit">Search</button>
-        </form>
 
+        <div class="d-flex justify-content-center">
+            <input id="input" class="form-control me-2 " type="search" placeholder="Search for Meal..."
+                aria-label="Search">
+            <button id="search" class="btn btn-outline" ; type="submit">Search</button>
+        </div>
+        <div id="input-value">
+            
+        </div>
+        <div id="details"></div>
+        <div id="meals">
+            
+        </div>
+            
 
     </main>
     <script src="app.js"></script>
