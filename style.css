@@ -2,6 +2,7 @@ body{
     background-color: rgb(204, 175, 102);
     margin: 20px 100px;
 }
+
 .nav-item a{
     color: rgb(11, 11, 92);
     font-size: 15px;
@@ -67,4 +68,12 @@ body{
 .fa-check{
     background-color:  rgb(11, 11, 92);
     color: white;
+}
+footer{   
+    text-align: center;
+    display: none;
+    color: rgb(11, 11, 92);
+} 
+footer p{
+    font-size: 12px;
 }

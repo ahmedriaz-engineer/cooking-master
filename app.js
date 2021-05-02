@@ -21,6 +21,7 @@ search.addEventListener("click", function () {
                 input.addEventListener("click", function () {
                     input.value = "";
                 })
+                document.getElementById("footer").style.display = "block";
             })
     }
 })
