@@ -1,7 +1,7 @@
 const search = document.getElementById("search");
 const input = document.getElementById("input");
 
-
+// Search button event handler..
 search.addEventListener("click", function () {
     if (input.value === "") {
         alert("Please input meal name!!!")
@@ -10,65 +10,81 @@ search.addEventListener("click", function () {
         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${input.value}`)
             .then(response => response.json())
             .then(data => {
-                const meals = data.meals;
-                // console.log(meals);
-                for (let i = 0; i < meals.length; i++) {
-                    const meal = meals[i];
-                    // console.log(meal);
-                    var mealName = meal.strMeal;
-                    const div = document.createElement("div");
-                    div.className = "meal h-100";
-                    div.innerHTML = `
-                        <div class="card result text-center h-100" >
-                            <img src="${meal.strMealThumb}" class="card-img-top"alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title "> ${mealName} </h5>
-                                <div id="ing" class="card h-100">
-                                    
-                                </div>
-                            </div>
-                        </div>    
-                    `;
+                const getData = data.meals;
 
-
-
-
-                    const allMeals = document.getElementById("meals");
-                    allMeals.appendChild(div);
-                    const searchHistory = document.getElementById("input-value");
-                    searchHistory.innerHTML = `Showing result for: <b>${input.value}</b>`
-
-                    search.addEventListener("click", function () {
-                        allMeals.innerText = "";
-                    })
-                    input.addEventListener("click", function () {
-                        input.value = "";
-                    })
-
-                }
-                function showDetail() {
-
-                    const card = document.getElementsByClassName("result");
-                    for (let i = 0; i < card.length; i++) {
-                        const perCard = card[i];
-                        perCard.addEventListener("click", function () {
-                            // console.log(perCard, "card clicked");
-                            const ing = document.getElementById("ing");
-                            ing.innerHTML = `${perCard.innerHTML}
-                                <b>Ingredients</b>
-                                <li>1</li>
-                                <li>2</li>
-                                <li>3</li>
-                            `
-                            ing.style.display = "block"
-                            document.getElementById("details").appendChild(ing);
-
-
-                        })
-                    }
-                }
-                showDetail();
-
+                showResult(getData);
+                showDetails();
+                search.addEventListener("click", function () {
+                    document.getElementById("meals").innerText = "";
+                    document.getElementById("details").innerText = "";
+                })
+                input.addEventListener("click", function () {
+                    input.value = "";
+                })
             })
     }
 })
+
+// Showing the search result..
+function showResult(meals) {
+    if (meals === null) {
+        document.getElementById("details").innerHTML = `<i class="fas fa-times-circle"></i> Sorry, We couldn't find any matching meal !!`;
+        document.getElementById("input-value").innerText = "";
+    }
+    else {
+        meals.forEach(meal => {
+            const div = document.createElement("div");
+            div.className = "meal h-100";
+            div.innerHTML = `
+                <div class="card result text-center h-100 " >
+                    <img src="${meal.strMealThumb}" class="card-img-top"alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title "> ${meal.strMeal} </h5>
+                        <p id= "area">${meal.strArea}</p>
+                        <div id= "hiddenIngredient">
+                            <b>Ingredients:</b>
+
+                            <div id= "ingredient-list">
+                            <i class="fas fa-check-square"></i> ${meal.strIngredient1}<br>
+                            <i class="fas fa-check-square"></i> ${meal.strIngredient2}<br>
+                            <i class="fas fa-check-square"></i> ${meal.strIngredient3}<br>
+                            <i class="fas fa-check-square"></i> ${meal.strIngredient4}<br>
+                            <i class="fas fa-check-square"></i> ${meal.strIngredient5}<br>
+                            <i class="fas fa-check-square"></i> ${meal.strIngredient6}<br>
+                            </div>
+                          
+                        </div>
+                     
+                    </div>
+                </div>
+                <div id= "ingredient" class="card">
+                </div>    
+            `;
+
+            const allMeals = document.getElementById("meals");
+            allMeals.appendChild(div);
+            const searchHistory = document.getElementById("input-value");
+            searchHistory.innerHTML = `Showing result for: <b>${input.value}</b>`
+        });
+    }
+}
+
+// showing the meal details..
+function showDetails() {
+
+    const card = document.getElementsByClassName("result");
+    for (let i = 0; i < card.length; i++) {
+        const eachCard = card[i];
+        eachCard.addEventListener("click", function () {
+
+            const ingredient = document.getElementById("ingredient");
+            ingredient.innerHTML = eachCard.innerHTML
+            document.getElementById("details").appendChild(ingredient);
+            ingredient.style.display = "block"
+            document.getElementById("hiddenIngredient").style.display = "block"
+            document.getElementById("area").style.display = "none"
+
+
+        })
+    }
+}
